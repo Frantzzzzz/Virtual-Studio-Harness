@@ -1,8 +1,6 @@
 import json
-from pathlib import Path
 import bpy
-HERE=Path(__file__).resolve().parent
-OUT=HERE.parents[1]/'outputs/forest_shared_stage_v2'
+from paths import OUT
 checks=json.loads((OUT/'film_checks.json').read_text());assert checks['status']=='pass'
 bpy.ops.wm.open_mainfile(filepath=str(OUT/'candidate_scene.blend'),load_ui=False,use_scripts=False)
 scope=json.loads((OUT/'film_render_scope.json').read_text())
