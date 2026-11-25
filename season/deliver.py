@@ -103,11 +103,11 @@ def deliver(output, wait=False):
             'saved_scene_reload_verification':reload_checks,
             'content_volume':{'dialogue_lines':len(dialogue_texts),'unique_dialogue_lines':len(set(dialogue_texts)),
                               'dialogue_characters':sum(len(t) for t in dialogue_texts)},
-            'runtime':{'wall_seconds_from_first_role_prompt':time.time()-min(p.stat().st_mtime for p in prompts),
+            'runtime':{'wall_seconds_from_first_role_prompt':max(p.stat().st_mtime for p in required)-min(p.stat().st_mtime for p in prompts),
                        'blender_production_seconds_sum':sum(r['seconds'] for r in machine_receipts),
                        'blender_export_seconds_sum':sum(r['seconds'] for r in bake_receipts),
                        'encoding_and_decode_seconds_sum':sum(e['video']['seconds'] for e in episodes),
-                       'scope':'Wall starts at first role prompt; excludes earlier setup. Component sums overlap with model jobs and must not be added to obtain wall time.'},
+                       'scope':'Wall starts at first role prompt and ends at the last video/bake/reload check file; excludes earlier setup and later publication. Component sums overlap with model jobs and must not be added to obtain wall time.'},
             'limitations':['Capsule root motion and invisible attachment points; no arms/gait/physical grasp',
                            'Subtitles only, no audio or lipsync; no Seedance/Wan final rendering',
                            'Local Forest stage supplied by host; not automatic whole-scene set discovery',
@@ -142,7 +142,7 @@ def deliver(output, wait=False):
         page+=f'<tr><td>第{i}集 → 第{i+1}集</td><td>{e(label)}</td><td>{len(episode["exit_public_facts"])} 条</td><td>已核对一致</td></tr>'
     page+='</tbody></table></div><p>事实与物理状态有精确台账；人物关系、动机和承诺的全部语义尚未形式化。剧情质量仍需要创作判断。</p></section>'
     page+=''.join(cards)
-    page+=f'<section><h2>本次成本与边界</h2><p>{len(jobs)} 个模型工单（含返修和内容检查），累计模型工单时间 {report["model_job_seconds"]/60:.1f} 分钟；输入 {usage["input_tokens"]:,} token，缓存输入 {usage["cached_input_tokens"]:,}，输出 {usage["output_tokens"]:,}。不含本会话、一次性开发、渲染及其他程序耗时。</p><p>最终视频引用 {len(all_keys):,} 个不同的实际 Blender 像素状态；相同状态直接复用，字幕按剧本时间更新。剧情没有靠倍速或重复场次补时长。</p><p>这是无配音的胶囊动作与摄影预演。没有人体步态、抓握、口型或 Seedance 成片；没有运行完整原生 WorldOS / harness finalize，也尚未测试一次新剧情修改后的整季重拍。</p></section><footer>全部视频完整解码；全部可编辑动画逐帧回读。采样可见性、模型内容检查与胶囊代理的通过，不等于最终影视质量或全场景物理认证。</footer></main></html>'
+    page+=f'<section><h2>本次成本与边界</h2><p>从首个模型工单到最后一次保存文件复核，约 {report["runtime"]["wall_seconds_from_first_role_prompt"]/60:.1f} 分钟，含返修；不含此前准备和后续代码发布。</p><p>{len(jobs)} 个模型工单（含返修和内容检查），累计模型工单时间 {report["model_job_seconds"]/60:.1f} 分钟；输入 {usage["input_tokens"]:,} token，缓存输入 {usage["cached_input_tokens"]:,}，输出 {usage["output_tokens"]:,}。Token统计不含本会话；模型工单时间不含渲染等程序阶段，且有阶段并行，不能与其他耗时简单相加。</p><p>最终视频引用 {len(all_keys):,} 个不同的实际 Blender 像素状态；相同状态直接复用，字幕按剧本时间更新。剧情没有靠倍速或重复场次补时长。</p><p>这是无配音的胶囊动作与摄影预演。没有人体步态、抓握、口型或 Seedance 成片；没有运行完整原生 WorldOS / harness finalize，也尚未测试一次新剧情修改后的整季重拍。</p></section><footer>全部视频完整解码；全部可编辑动画逐帧回读。采样可见性、模型内容检查与胶囊代理的通过，不等于最终影视质量或全场景物理认证。</footer></main></html>'
     (output/'index.html').write_text(page)
     print('SEASON_DELIVERED',json.dumps({k:report[k] for k in ('status','total_duration_s','total_encoded_frames','unique_final_pixel_states','model_jobs')}),flush=True)
     return report

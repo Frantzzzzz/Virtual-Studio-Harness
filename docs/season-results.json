@@ -1,0 +1,119 @@
+{
+  "status": "five_episode_capsule_previs_complete",
+  "total_duration_s": 2400,
+  "total_encoded_frames": 57600,
+  "scene_count": 30,
+  "cross_episode_boundaries_checked": 4,
+  "unique_final_pixel_states": 5975,
+  "exact_pixel_state_reuse_fraction": 0.8962673611111112,
+  "model_jobs": 32,
+  "model_job_seconds": 3462.7677013370267,
+  "usage": {
+    "input_tokens": 1120045,
+    "cached_input_tokens": 67200,
+    "output_tokens": 157597
+  },
+  "context_packets": [
+    {
+      "episode": "ep01",
+      "packet_characters": 5714,
+      "recent_summaries_loaded": 0,
+      "all_prior_raw_scripts_loaded": false,
+      "revisions": 1
+    },
+    {
+      "episode": "ep02",
+      "packet_characters": 6142,
+      "recent_summaries_loaded": 3,
+      "all_prior_raw_scripts_loaded": false,
+      "revisions": 1
+    },
+    {
+      "episode": "ep03",
+      "packet_characters": 6213,
+      "recent_summaries_loaded": 3,
+      "all_prior_raw_scripts_loaded": false,
+      "revisions": 1
+    },
+    {
+      "episode": "ep04",
+      "packet_characters": 6151,
+      "recent_summaries_loaded": 3,
+      "all_prior_raw_scripts_loaded": false,
+      "revisions": 1
+    },
+    {
+      "episode": "ep05",
+      "packet_characters": 6644,
+      "recent_summaries_loaded": 3,
+      "all_prior_raw_scripts_loaded": false,
+      "revisions": 1
+    }
+  ],
+  "content_volume": {
+    "dialogue_lines": 211,
+    "unique_dialogue_lines": 211,
+    "dialogue_characters": 9898
+  },
+  "runtime": {
+    "wall_seconds_from_first_role_prompt": 5205.84148311615,
+    "blender_production_seconds_sum": 3318.680291248951,
+    "blender_export_seconds_sum": 165.76364220899995,
+    "encoding_and_decode_seconds_sum": 188.13642620798782,
+    "scope": "Wall starts at first role prompt and ends at the last video/bake/reload check file; excludes earlier setup and later publication. Component sums overlap with model jobs and must not be added to obtain wall time."
+  },
+  "limitations": [
+    "Capsule root motion and invisible attachment points; no arms/gait/physical grasp",
+    "Subtitles only, no audio or lipsync; no Seedance/Wan final rendering",
+    "Local Forest stage supplied by host; not automatic whole-scene set discovery",
+    "Walking proxy excludes GroundPlants; full current proxy forest for image rays, not original high-detail materials",
+    "Distant background omitted for RGB; EEVEE preview at 640x360, 2 samples",
+    "Scoped Codex roles with host/program feedback; not native WorldOS or native harness finalize",
+    "A new early plot edit with end-to-end re-production has not been tested in this run"
+  ],
+  "episodes": [
+    {
+      "episode": "ep01",
+      "title": "谁先放下",
+      "duration_s": 480,
+      "frames": 11520,
+      "shots": 28
+    },
+    {
+      "episode": "ep02",
+      "title": "北侧两个字",
+      "duration_s": 480,
+      "frames": 11520,
+      "shots": 34
+    },
+    {
+      "episode": "ep03",
+      "title": "做完了什么",
+      "duration_s": 480,
+      "frames": 11520,
+      "shots": 31
+    },
+    {
+      "episode": "ep04",
+      "title": "谁能撤回",
+      "duration_s": 480,
+      "frames": 11520,
+      "shots": 28
+    },
+    {
+      "episode": "ep05",
+      "title": "留白也算交代",
+      "duration_s": 480,
+      "frames": 11520,
+      "shots": 31
+    }
+  ],
+  "boundary_count": 29,
+  "maximum_boundary_endpoint_error": 0.0,
+  "saved_scene_reload_verification": {
+    "status": "pass",
+    "total_frames": 57600
+  },
+  "visual_qa_scope": "30 sampled encoded frames plus selected handover frames; not exhaustive human playback",
+  "model_usage_scope": "Recorded role jobs including failures/repairs/reviews; excludes host chat and prior setup"
+}

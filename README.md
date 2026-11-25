@@ -2,9 +2,9 @@
 
 在已有 Blender 影棚中，为动作导演和摄影指导提供共同的场景事实，再将它们的计划执行为可检查、可局部返修的胶囊人预演。
 
-当前基于真实 Forest 小样，包含已验证的单场基线与正在执行验证的五集生产实现。目标是复用局部影棚构建与拍摄流程；三方自主协商和新剧情修改后的完整影响传播尚未验证。
+当前基于真实 Forest 小样，已完成单场基线与 **5 集 × 8 分钟** 的胶囊人字幕预演：30 场、152 镜、57,600 帧，并保存五份可编辑 Blender 场景。目标是复用局部影棚构建与拍摄流程；三方自主协商和新剧情修改后的完整影响传播尚未验证。
 
-五集生产实现已加入 `season/`：分集编剧、精确状态继承、动作原语、动态构图包络、局部摄影返修、像素缓存和整集动画回读。说明见 [docs/season-production.md](docs/season-production.md)。实际是否完成以本机运行的 `season_report.json` 为准；三方自主协商及新剧情修改后的整季重拍尚未验证。
+五集生产实现位于 `season/`：分集编剧、精确状态继承、动作原语、动态构图包络、局部摄影返修、像素缓存和整集动画回读。实现、实测成本与验收边界见 [docs/season-production.md](docs/season-production.md)，不含本机路径的结果摘要见 [docs/season-results.json](docs/season-results.json)。本地 `season_report.json` 保留逐场证据，视频与 blend 不随源码上传。
 
 ## 已验证的单场执行链
 
@@ -76,7 +76,7 @@ python3 experiments/forest_capsules/blender_run.py walk_check
 python3 experiments/forest_capsules/blender_run.py render
 ```
 
-原小样的动作姿态修订与摄影修订由宿主转交反馈后产生。本仓库没有自动运行的完整返修调度器；`deliver.py` 仍是对应五次原始工单的报告器，不是任意新实验的通用报告工具。不要通过伪造原始工单补齐它的输入。
+以上单场入口的动作姿态修订与摄影修订由宿主转交反馈后产生；单场 `deliver.py` 仍是对应五次原始工单的报告器，不是任意新实验的通用报告工具。五集入口另由 `season.produce` 调度有界摄影返修，见五集生产文档。不要通过伪造原始工单补齐输入。
 
 ## 单场基线的边界
 
