@@ -1,0 +1,4 @@
+# Host Python dependencies; Blender supplies bpy/mathutils itself.
+numpy>=1.24
+Pillow>=10
+opencv-python>=4.8

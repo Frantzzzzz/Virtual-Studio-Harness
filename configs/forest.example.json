@@ -1,0 +1,32 @@
+{
+  "schema": "virtual_studio.forest_pilot.v1",
+  "camera_harness": "vendor/camera-harness",
+  "worldos": "vendor/WorldOS",
+  "scene_index": "assets/forest/scene_index.json",
+  "source_blend": "assets/forest/pine_forest_whitebox.blend",
+  "calibration_blend": "assets/forest/native_forest_previs.blend",
+  "baseline_episode": "assets/forest/native_episode.json",
+  "source_sha256": "65291e0a2abe1aa58107270dfc9ed34fddeec57d958b4dc09ebe0ddeacc35e48",
+  "origin_blender": [18, 22, 0.04756355285644531],
+  "roi_half_extent": [8, 8, 5],
+  "anchors_xz": {
+    "west_entry": [-2.75, 0],
+    "pickup_stand": [-1.1, 0.95],
+    "handover_A": [-0.5, 0],
+    "handover_B": [0.5, 0],
+    "east_wait": [2.5, 0],
+    "drop_stand": [2.75, -1.1],
+    "drop_retreat": [2.75, -0.85],
+    "observer": [0, -2.0],
+    "west_bypass": [-1.75, -0.75],
+    "east_bypass": [1.5, -0.5]
+  },
+  "output_dir": "outputs/forest-capsules",
+  "blender_lock": "outputs/.blender_process.lock",
+  "blender_bin": "blender",
+  "codex_bin": "codex",
+  "font_path": "assets/fonts/unicode.ttf",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "medium",
+  "history_root": null
+}
